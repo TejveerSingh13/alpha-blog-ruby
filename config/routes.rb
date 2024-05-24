@@ -12,6 +12,6 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about'
 
   #Defines routes for DB, basically 'show'
-  resources :articles, only: [:show, :index]
+  resources :articles, only: [:show, :index, :new, :create]
 
 end
