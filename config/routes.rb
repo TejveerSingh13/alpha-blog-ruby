@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about'
 
   #Defines routes for DB 
-  resources :articles, only: [:show, :index, :new, :create, :edit, :update, :destroy]
-  # or simply - > resources :articles 
+  # resources :articles, only: [:show, :index, :new, :create, :edit, :update, :destroy]
+  resources :articles 
 
 end

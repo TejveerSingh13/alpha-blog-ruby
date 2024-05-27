@@ -1,10 +1,12 @@
 class ArticlesController < ApplicationController
+
+    before_action :set_article, only:[:show, :update, :edit, :destroy]
+
     def index
       @articles = Article.all
     end
     
     def show
-      @article = Article.find(params[:id])
     end
 
     def new
@@ -12,11 +14,10 @@ class ArticlesController < ApplicationController
     end
 
     def edit
-      @article = Article.find(params[:id])
     end
 
     def create
-        @article = Article.new(params.require(:article).permit(:title, :description)) #whitelisitng (telling rails what to expect) or strong paramters
+        @article = Article.new(white_list_article_param) #whitelisitng (telling rails what to expect) or strong paramters
         if @article.save
           flash[:notice] = "Article was created successsfully"
           redirect_to article_path(@article) #prefix_path(id)
@@ -28,12 +29,26 @@ class ArticlesController < ApplicationController
     end
 
     def update
-      @article = Article.find(params[:id])
-      if @article.update(params.require(:article).permit(:title, :description))
+      if @article.update(white_list_article_param)
         flash[:notice] = "Article was updated successsfully"
           redirect_to article_path(@article) #prefix_path(id)
       else
         render 'edit'
       end
+    end
+
+    def destroy
+      @article.destroy                      # destroy the article
+      redirect_to articles_path    # redirect to the article list
+    end
+
+    private
+
+    def set_article
+      @article = Article.find(params[:id])
+    end
+
+    def white_list_article_param
+      params.require(:article).permit(:title, :description)
     end
 end
