@@ -13,6 +13,9 @@ Rails.application.routes.draw do
 
   #Defines routes for DB 
   # resources :articles, only: [:show, :index, :new, :create, :edit, :update, :destroy]
-  resources :articles 
+  resources :articles
+  
+  get 'signup', to: 'users#new'
+  resources :users, except: [:new]
 
 end
