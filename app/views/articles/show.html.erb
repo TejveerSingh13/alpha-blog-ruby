@@ -4,7 +4,9 @@
 <%= link_to gravatar_for(@article.user), user_path(@article.user) %>
 <p><strong>Description: </strong><%= @article.description %></p>
 <p>
-    <%= link_to "Edit", edit_article_path(@article) %> |  
-    <td><%= link_to 'Delete', article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }%></td> | 
+    <% if logged_in? && @article.user == current_user %>
+        <%= link_to "Edit", edit_article_path(@article) %> |  
+        <td><%= link_to 'Delete', article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }%></td> | 
+    <% end %>
     <%= link_to "Return to Articles List", articles_path %>
 </p>

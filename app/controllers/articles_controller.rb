@@ -18,7 +18,7 @@ class ArticlesController < ApplicationController
 
     def create
         @article = Article.new(white_list_article_param) #whitelisitng (telling rails what to expect) or strong paramters
-        @article.user = User.first
+        @article.user = current_user
         if @article.save
           flash[:notice] = "Article was created successsfully"
           redirect_to article_path(@article) #prefix_path(id)

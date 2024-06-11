@@ -18,4 +18,8 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   resources :users, except: [:new]
 
+  get 'login', to: 'sessions#new' #to open the login page ~similar to open a new form
+  post 'login', to: 'sessions#create' #to send the login credential to the backend ~similar to submit a new form
+  delete 'logout', to: 'sessions#destroy'
+
 end

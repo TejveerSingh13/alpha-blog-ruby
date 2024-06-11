@@ -3,4 +3,10 @@
 <%= link_to "Articles List", articles_path %>
 <%= link_to "Users List", users_path %>
 <%= link_to "About Page", about_path %>
-<%= link_to "Sign-up", signup_path %>
+<%if logged_in? %>
+    <%= link_to current_user.username, user_path(current_user) %>
+    <%= link_to "Log-out", logout_path, data: {turbo_method: :delete}%>
+<% else %>
+    <%= link_to "Log-in", login_path %>
+    <%= link_to "Sign-up", signup_path %>
+<% end %>
