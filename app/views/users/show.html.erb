@@ -3,6 +3,7 @@
 
 <% if logged_in? && @user == current_user %>
     <div> <%= link_to 'Edit your profile', edit_user_path(@user) %></div>
+    <div> <%= link_to 'Delete your profile', user_path(@user), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></div>
 <% end %>
 
 <h3>Articles</h3>
