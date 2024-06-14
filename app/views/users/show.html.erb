@@ -1,9 +1,9 @@
-<h1><%= @user.username %>'s Profile</h1>
+<h1><%= "(Admin) " if current_user.admin? %><%= @user.username %>'s Profile</h1>
 <%= gravatar_for @user, size: 200 %>
 
-<% if logged_in? && @user == current_user %>
-    <div> <%= link_to 'Edit your profile', edit_user_path(@user) %></div>
-    <div> <%= link_to 'Delete your profile', user_path(@user), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></div>
+<% if logged_in? && (@user == current_user || current_user.admin?) %>
+    <div> <%= link_to 'Edit this profile', edit_user_path(@user) %></div>
+    <div> <%= link_to 'Delete this profile', user_path(@user), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></div>
 <% end %>
 
 <h3>Articles</h3>
