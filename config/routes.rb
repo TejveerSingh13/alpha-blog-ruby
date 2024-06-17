@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create' #to send the login credential to the backend ~similar to submit a new form
   delete 'logout', to: 'sessions#destroy'
 
+  resources :categories, except: [:destroy]
+
 end

@@ -1,0 +1,13 @@
+<h1>Create a new Category</h1>
+
+<%= form_with(model: @category, local: true) do |f|%>
+    <p>
+        <%= f.label :name, "Category Name" %><br />
+        <%= f.text_field :name, placeholder: "Enter a name"%>
+    </p>
+    <p>
+        <%= f.submit %>
+    </p>
+
+    <%= link_to "Return to Articles List", articles_path %>
+<%end%>
